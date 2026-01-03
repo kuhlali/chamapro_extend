@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}{{ chama.name }} | {{ site_name }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'chama:dashboard' %}">Dashboard</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ chama.name }}</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0 mb-4">
+                {% if chama.logo %}
+                <img src="{{ chama.logo.url }}" class="card-img-top" alt="{{ chama.name }}" style="max-height: 400px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h1 class="card-title display-6 fw-bold mb-0">{{ chama.name }}</h1>
+                        {% if chama.is_public %}<span class="badge bg-success">Public</span>{% else %}<span class="badge bg-secondary">Private</span>{% endif %}
+                    </div>
+                    <p class="text-muted mb-4"><i class="bi bi-geo-alt-fill me-1"></i> {{ chama.county }}{% if chama.constituency %}, {{ chama.constituency }}{% endif %}</p>
+                    
+                    <div class="mb-4">
+                        <h5 class="fw-bold">About Us</h5>
+                        <p class="lead fs-6">{{ chama.description }}</p>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-light rounded">
+                                <small class="text-muted d-block text-uppercase fw-bold">Monthly Contribution</small>
+                                <span class="fs-5">KSh {{ chama.monthly_contribution }}</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-3 bg-light rounded">
+                                <small class="text-muted d-block text-uppercase fw-bold">Total Balance</small>
+                                <span class="fs-5">KSh {{ chama.total_balance }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold mb-3">Quick Actions</h5>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'payments:initiate_contribution' chama.id %}" class="btn btn-success py-2">Make Contribution</a>
+                        <a href="{% url 'chama:invite_member' chama.slug chama.id %}" class="btn btn-outline-primary py-2">Invite Members</a>
+                        <a href="{% url 'chama:members_list' chama.slug chama.id %}" class="btn btn-outline-secondary py-2">View Members</a>
+                        <a href="{% url 'chama:investment_list' chama.slug chama.id %}" class="btn btn-outline-info py-2">View Investments</a>
+                        {% comment %} <a href="{% url 'chama:investment_list' chama.slug chama.id %}" class="btn btn-outline-info py-2"><i class="fas fa-chart-line">View Investments</i></a> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

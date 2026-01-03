@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Activate {{ chama.get_subscription_plan_display }}</h4>
+                </div>
+                <div class="card-body p-4">
+                    {% if success %}
+                        <div class="alert alert-success">
+                            <i class="bi bi-check-circle me-2"></i>{{ message }}
+                        </div>
+                        <a href="{% url 'chama:dashboard' %}" class="btn btn-outline-primary w-100">Go to Dashboard</a>
+                    {% else %}
+                        <p class="lead">Total Amount: <strong>KES {{ amount|intcomma }}</strong></p>
+                        <p class="text-muted">Enter your M-Pesa number to complete the payment for <strong>{{ chama.name }}</strong>.</p>
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label">M-Pesa Phone Number</label>
+                                <input type="text" name="phone" class="form-control" placeholder="e.g., 0712345678" value="{{ user.phone_number }}" required>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Pay KES {{ amount }}</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+```
+
+<!--
+[PROMPT_SUGGESTION]How do I restrict access to certain features like "Loans" based on the subscription plan?[/PROMPT_SUGGESTION]
+[PROMPT_SUGGESTION]How can I create an admin view to see which Chamas have expired subscriptions?[/PROMPT_SUGGESTION]
+-->

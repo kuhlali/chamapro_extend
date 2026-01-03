@@ -1,0 +1,56 @@
+<!-- templates/includes/footer.html -->
+<footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <a class="navbar-brand d-flex align-items-center mb-3 text-white" href="{% url 'home' %}">
+                    <i class="bi bi-people-fill me-2"></i>
+                    <span class="fw-bold">ChamaPro</span>
+                </a>
+                <p class="text-white-50 small">Professional chama management platform for tracking contributions, loans, and investments.</p>
+            </div>
+            
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="mb-3">Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'home' %}" class="text-white-50 text-decoration-none small">Home</a></li>
+                    <li class="mb-2"><a href="{% url 'about' %}" class="text-white-50 text-decoration-none small">About</a></li>
+                    <li class="mb-2"><a href="{% url 'contact' %}" class="text-white-50 text-decoration-none small">Contact</a></li>
+                    <li class="mb-2"><a href="/#features" class="text-white-50 text-decoration-none small">Features</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="mb-3">Features</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="{% url 'payments:contributions' %}" class="text-white-50 text-decoration-none small">Contributions</a></li>
+                    <li class="mb-2"><a href="{% url 'payments:loans' %}" class="text-white-50 text-decoration-none small">Loan Management</a></li>
+                    <li class="mb-2"><a href="{% url 'chama:members' %}" class="text-white-50 text-decoration-none small">Member Directory</a></li>
+                    <li class="mb-2"><a href="{% url 'chama:reports' %}" class="text-white-50 text-decoration-none small">Reports</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="mb-3">Contact Info</h6>
+                <ul class="list-unstyled text-white-50 small">
+                    <li class="mb-2"><i class="bi bi-envelope me-2"></i> support@chamapro.com</li>
+                    <li class="mb-2"><i class="bi bi-telephone me-2"></i> +254 700 000 000</li>
+                    <li class="mb-2"><i class="bi bi-geo-alt me-2"></i> Nairobi, Kenya</li>
+                </ul>
+            </div>
+        </div>
+        
+        <hr class="border-secondary my-3">
+        
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="mb-0 text-white-50 small">&copy; {% now "Y" %} ChamaPro. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="/privacy/" class="text-white-50 text-decoration-none small me-3">Privacy</a>
+                <a href="/terms/" class="text-white-50 text-decoration-none small me-3">Terms</a>
+                <a href="/cookies/" class="text-white-50 text-decoration-none small">Cookies</a>
+            </div>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,74 @@
+<!-- templates/includes/navbar.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+        <!-- Brand/Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+            <i class="bi bi-people-fill me-2"></i>
+            <span class="fw-bold">ChamaPro</span>
+        </a>
+        
+        <!-- Mobile Toggle Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <!-- Navigation Links -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">
+                        <i class="bi bi-house-door me-1"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#features">
+                        <i class="bi bi-stars me-1"></i> Features
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#how-it-works">
+                        <i class="bi bi-play-circle me-1"></i> How It Works
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#faq">
+                        <i class="bi bi-question-circle me-1"></i> FAQ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">
+                        <i class="bi bi-telephone me-1"></i> Contact
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- User Section -->
+            <ul class="navbar-nav">
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i> {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
+                            {% comment %} <li><a class="dropdown-item" href="{% url 'profile' %}">Settings</a></li> {% endcomment %}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light ms-2" href="{% url 'account_signup' %}">
+                            <i class="bi bi-person-plus me-1"></i> Sign Up
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>_

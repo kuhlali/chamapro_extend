@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Choose the Right Plan for Your Chama</h1>
+        <p class="lead text-muted">Simple, transparent pricing. No hidden fees.</p>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+        <!-- Starter Plan -->
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Starter</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">Free<small class="text-muted fw-light">/mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><i class="bi bi-check text-success me-2"></i>Up to 5 Members</li>
+                        <li><i class="bi bi-check text-success me-2"></i>Manual Record Keeping</li>
+                        <li><i class="bi bi-check text-success me-2"></i>Basic Dashboard</li>
+                        <li><i class="bi bi-x text-muted me-2"></i>No M-Pesa Integration</li>
+                    </ul>
+                    <a href="{% url 'create' %}?plan=BASIC" class="w-100 btn btn-lg btn-outline-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Growth Plan (The 500 KES one) -->
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow border-primary">
+                <div class="card-header py-3 text-white bg-primary border-primary">
+                    <h4 class="my-0 fw-normal">Growth</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">KES 500<small class="text-muted fw-light">/mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i><strong>Unlimited Members</strong></li>
+                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i><strong>Automated M-Pesa</strong></li>
+                        <li><i class="bi bi-check text-success me-2"></i>Loan Management</li>
+                        <li><i class="bi bi-check text-success me-2"></i>Penalty Tracking</li>
+                    </ul>
+                    <a href="{% url 'create' %}?plan=STANDARD" class="w-100 btn btn-lg btn-primary">Choose Growth</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enterprise Plan -->
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Enterprise</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">KES 1,200<small class="text-muted fw-light">/mo</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li><i class="bi bi-check text-success me-2"></i>Everything in Growth</li>
+                        <li><i class="bi bi-check text-success me-2"></i>Investment Portfolio</li>
+                        <li><i class="bi bi-check text-success me-2"></i>Advanced Financial Reports</li>
+                        <li><i class="bi bi-check text-success me-2"></i>Priority Support</li>
+                    </ul>
+                    <a href="{% url 'create' %}?plan=PREMIUM" class="w-100 btn btn-lg btn-outline-primary">Go Enterprise</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+```
+
+### 7. Create `templates/payments/pay_subscription.html`
+A simple template for the subscription payment page.
+
+```diff

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Contribute to {{ chama.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">Make Contribution</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ chama.name }}</h5>
+                    <p class="text-muted">Contribution Amount: KSh {{ chama.monthly_contribution }} ({{ chama.get_contribution_frequency_display }})</p>
+                    
+                    {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                    {% endif %}
+
+                    {% if penalties %}
+                    <div class="alert alert-warning">
+                        <strong><i class="bi bi-exclamation-triangle"></i> Outstanding Penalties:</strong>
+                        <ul class="mb-0 mt-1">
+                            {% for p in penalties %}
+                                <li>{{ p.reason }}: KSh {{ p.amount }}</li>
+                            {% endfor %}
+                        </ul>
+                        <div class="mt-2 fw-bold">Total Penalties: KSh {{ penalty_total }}</div>
+                        <small>This has been added to your contribution amount below.</small>
+                    </div>
+                    {% endif %}
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">M-Pesa Phone Number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="2547..." value="{{ user.phone_number }}" pattern="^254\d{9}$" title="Please enter a valid Safaricom number starting with 254 (e.g., 2547...)" required>
+                            <div class="form-text text-muted">Ensure format is 2547... (No + sign)</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount (KSh)</label>
+                            <input type="number" class="form-control" id="amount" name="amount" value="{{ initial_amount|floatformat:0 }}" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success">Pay with M-Pesa</button>
+                            <a href="{% url 'chama:chama_detail' chama.slug chama.id %}" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

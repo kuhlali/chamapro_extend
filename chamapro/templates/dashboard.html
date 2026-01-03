@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | {{ site_name }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold">My Dashboard</h1>
+        <a href="{% url "chama:create" %}" class="btn btn-primary"><i class="bi bi-plus-circle me-2"></i>Create New Chama</a>
+    </div>
+    
+    <div class="row">
+        {% for chama in my_chamas %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                {% if chama.logo %}
+                <img src="{{ chama.logo.url }}" class="card-img-top" alt="{{ chama.name }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="bg-light d-flex align-items-center justify-content-center text-muted" style="height: 200px;">
+                    <span>No Logo Available</span>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ chama.name }}</h5>
+                    <p class="card-text text-muted small">{{ chama.excerpt|default:chama.description|truncatewords:20 }}</p>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <span class="badge bg-success bg-opacity-10 text-success">Bal: {{ chama.total_balance }}</span>
+                        <small class="text-muted">{{ chama.active_members_count }} Members</small>
+                    </div>
+                </div>
+                <div class="card-footer bg-white border-top-0 pb-3">
+                    <a href="{{ chama.get_absolute_url }}" class="btn btn-outline-primary w-100">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">You haven't created any Chamas yet. <a href="{% url "chama:create" %}" class="alert-link">Create one now</a> to get started!</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

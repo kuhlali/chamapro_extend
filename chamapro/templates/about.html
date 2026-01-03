@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">Empowering Financial Growth Together</h1>
+                <p class="lead text-muted mb-4">ChamaPro is the leading digital platform for modern investment groups in Kenya. We simplify contribution tracking, loan management, and transparency for Chamas of all sizes.</p>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'users:register' %}" class="btn btn-primary btn-lg px-4">Get Started</a>
+                    <a href="{% url 'contact' %}" class="btn btn-outline-secondary btn-lg px-4">Contact Us</a>
+                </div>
+            </div>
+            <div class="col-lg-6 mt-5 mt-lg-0 text-center">
+                <div class="p-5 bg-white rounded-3 shadow-sm d-inline-block">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="currentColor" class="bi bi-people-fill text-primary mb-3" viewBox="0 0 16 16">
+                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                    </svg>
+                    <h3 class="h5 fw-bold">Trusted by Chamas</h3>
+                    <p class="text-muted mb-0">Secure. Transparent. Efficient.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mission & Vision -->
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="h-100 p-4 border rounded-3 shadow-sm bg-white">
+                <h2 class="h3 mb-3 text-primary fw-bold">Our Mission</h2>
+                <p class="text-muted">To digitize and streamline the operations of investment groups (Chamas), ensuring financial transparency, ease of management, and accelerated growth for every member.</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-4 border rounded-3 shadow-sm bg-white">
+                <h2 class="h3 mb-3 text-primary fw-bold">Our Vision</h2>
+                <p class="text-muted">To be the most trusted financial management partner for investment groups across Africa, fostering a culture of saving and smart investing through technology.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Why Choose Us -->
+<div class="bg-white py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Why Choose ChamaPro?</h2>
+            <p class="text-muted">Built specifically for the unique needs of Kenyan investment groups.</p>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-phone text-success" viewBox="0 0 16 16">
+                        <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                        <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                    </svg>
+                </div>
+                <h4 class="h5 fw-bold">M-Pesa Integration</h4>
+                <p class="text-muted small">Automated contribution tracking via M-Pesa STK Push. No more manual receipt verification.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-graph-up-arrow text-success" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
+                    </svg>
+                </div>
+                <h4 class="h5 fw-bold">Real-time Reporting</h4>
+                <p class="text-muted small">Instant access to financial statements, loan statuses, and member contribution history.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-shield-lock text-success" viewBox="0 0 16 16">
+                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                    </svg>
+                </div>
+                <h4 class="h5 fw-bold">Secure & Private</h4>
+                <p class="text-muted small">Your financial data is encrypted and secure. We prioritize member privacy and data protection.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="bg-primary text-white py-5 text-center">
+    <div class="container">
+        <h2 class="mb-3 fw-bold">Ready to transform your Chama?</h2>
+        <p class="lead mb-4">Join hundreds of other investment groups managing their finances professionally.</p>
+        <a href="{% url 'users:register' %}" class="btn btn-light btn-lg text-primary fw-bold px-5">Create Account</a>
+    </div>
+</div>
+{% endblock %}
