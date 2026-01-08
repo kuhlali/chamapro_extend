@@ -137,8 +137,18 @@ WSGI_APPLICATION = 'chamapro.wsgi.application'
 
 # Database - PostgreSQL recommended for production
 # Automatically uses DATABASE_URL if set (Render), otherwise uses SQLite (Local)
+db_config = dj_database_url.config(
+    default=f'sqlite:///{BASE_DIR / "db.sqlite3"}',
+    conn_max_age=600 if not DEBUG else 0
+)
+
+# Fix: If running locally with a Render Internal URL, fallback to SQLite
+if DEBUG and db_config.get('HOST', '').startswith('dpg-'):
+    print("⚠️  Render Internal Database URL detected locally. Switching to SQLite.")
+    db_config = dj_database_url.parse(f'sqlite:///{BASE_DIR / "db.sqlite3"}')
+
 DATABASES = {
-    'default': dj_database_url.config(default=f'sqlite:///{BASE_DIR / "db.sqlite3"}', conn_max_age=600)
+    'default': db_config
 }
 
 # DATABASES = {
