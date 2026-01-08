@@ -32,6 +32,13 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
+if not DEBUG:
+    # Tell Django to trust the X-Forwarded-Proto header set by Render
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
 # SEO: Site metadata
 SITE_NAME = "ChamaPro"
 SITE_DESCRIPTION = "Professional Chama Management Platform with M-Pesa Integration"
@@ -165,8 +172,19 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # SEO: Compress static files in production
-# Use Whitenoise for static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Use Whitenoise for static files (Modern Django 4.2+ configuration)
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+if DEBUG:
+    # Use default storage locally to avoid "Missing staticfiles manifest" errors
+    STORAGES["staticfiles"]["BACKEND"] = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 # Media files (User uploaded)
 MEDIA_URL = '/media/'
